@@ -2,18 +2,26 @@
 
 Dashboard ini dibuat menggunakan **Streamlit** untuk menganalisis data polusi udara berdasarkan curah hujan dan waktu.
 
-## 📂 Struktur Proyek
-Air_Quality_Dataset_Analysis_Project
-├───dashboard
-| ├───main_data.csv
-| └───dashboard.py
-├───data
-| ├───data_1.csv
-| └───data_2.csv
-├───notebook.ipynb
-├───README.md
-└───requirements.txt
-└───url.txt
+# # Bike Share Analysis 🚲
+## Submission Analisis Data Dicoding
+Streamlit Cloud: https://bike-share-analysis-project-mkhz5uxadszgw4efxjrrus.streamlit.app/ 
+## Installation
+
+Clone repository:
+```sh
+https://github.com/ZulfahBintiToyibah/bike-share-analysis-project
+```
+Install pustaka:
+
+```sh
+pip install -r requirements.txt
+```
+## Run Dashboard
+```sh
+cd dashboard
+streamlit run dashboard.py
+```
+
 
 
 
