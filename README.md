@@ -4,12 +4,12 @@ Dashboard ini dibuat menggunakan **Streamlit** untuk menganalisis data polusi ud
 
 # # Bike Share Analysis 🚲
 ## Submission Analisis Data Dicoding
-Streamlit Cloud: https://bike-share-analysis-project-mkhz5uxadszgw4efxjrrus.streamlit.app/ 
+Streamlit Cloud: https://airqualityanalysis1.streamlit.app/ 
 ## Installation
 
 Clone repository:
 ```sh
-https://github.com/ZulfahBintiToyibah/bike-share-analysis-project
+https://github.com/NauvalGymnasti/Air_Quality_Dataset_Analysis_Project
 ```
 Install pustaka:
 
