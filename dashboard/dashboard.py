@@ -32,7 +32,6 @@ page = st.sidebar.radio("Pilih Analisis:", [
     "Tren Polusi Karbon Monoksida"
 ])
 
-
 # ==============================
 # DASHBOARD CONTENT
 # ==============================
@@ -50,19 +49,33 @@ st.markdown("---")
 if page == "Hubungan Curah Hujan dengan CO":
     st.header("☔ Hubungan Curah Hujan dengan Karbon Monoksida (CO)")
     
+    # Interaktif: Slider untuk menyaring rentang curah hujan
+    min_rain, max_rain = st.slider("Pilih Rentang Curah Hujan:",
+                                   float(df_prsa['RAIN'].min()),
+                                   float(df_prsa['RAIN'].max()),
+                                   (float(df_prsa['RAIN'].min()), float(df_prsa['RAIN'].max())))
+    df_filtered = df_prsa[(df_prsa['RAIN'] >= min_rain) & (df_prsa['RAIN'] <= max_rain)]
+    
     # Scatter Plot
-    fig_rain_co = px.scatter(df_prsa, x='RAIN', y='CO', color='rain_category', opacity=0.7,
+    fig_rain_co = px.scatter(df_filtered, x='RAIN', y='CO', color='rain_category', opacity=0.7,
                              title="Curah Hujan vs Karbon Monoksida",
                              labels={'RAIN': 'Curah Hujan (mm)', 'CO': 'CO (ppm)'},
                              color_discrete_sequence=["#00FF00", "#FF4500"], template="plotly_dark")
     st.plotly_chart(fig_rain_co, use_container_width=True)
     
     # Box Plot
-    fig_box = px.box(df_prsa, x='rain_category', y='CO', color='rain_category',
+    fig_box = px.box(df_filtered, x='rain_category', y='CO', color='rain_category',
                      title="Distribusi CO pada Hari Hujan vs Tidak Hujan",
                      labels={'rain_category': 'Kategori Hujan', 'CO': 'CO (PPM)'},
                      color_discrete_sequence=["#00FF00", "#FF4500"], template="plotly_dark")
     st.plotly_chart(fig_box, use_container_width=True)
+    
+    # Histogram tambahan untuk distribusi kadar CO
+    fig_hist = px.histogram(df_filtered, x='CO', nbins=30, color='rain_category',
+                            title="Distribusi Kadar CO",
+                            labels={'CO': 'Kadar CO (PPM)'},
+                            color_discrete_sequence=["#00FF00", "#FF4500"], template="plotly_dark")
+    st.plotly_chart(fig_hist, use_container_width=True)
 
 elif page == "Tren Polusi Karbon Monoksida":
     st.header("📈 Tren Kadar Karbon Monoksida (CO) di Kota Guanyuan")
